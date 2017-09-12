@@ -15,7 +15,7 @@ spec:
           image: "hashicorp/vault-example-sidecar-app:0.0.1"
           imagePullPolicy: IfNotPresent
           volumeMounts:
-            - name: vault-token
+            - name: app-secrets
               mountPath: "/etc/example-app/"
         - name: consul-template
           image: "hashicorp/vault-example-sidecar-consul-template:0.0.1"
@@ -24,8 +24,9 @@ spec:
             - name: VAULT_ADDR
               value: "http://10.0.2.2:8200"
           volumeMounts:
-            - name: vault-token
+            - name: app-secrets
               mountPath: "/etc/example-app/"
       volumes:
-        - name: vault-token
-          emptyDir: {"medium": "Memory"}
+        - name: app-secrets
+          emptyDir: 
+            medium: "Memory"
