@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -22,6 +24,12 @@ func main() {
 	}
 
 	fmt.Println(config)
+
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
+	<-signalChan
+
+	log.Printf("Shutdown signal received shutting down gracefully...")
 }
 
 func getConfig() (*config, error) {
@@ -34,8 +42,8 @@ func getConfig() (*config, error) {
 		case err != nil:
 			return nil, err
 		}
-
-		var config *config
+		log.Println(string(content[:]))
+		var config *config = &config{}
 		err = json.Unmarshal(content, config)
 		if err != nil {
 			return nil, err

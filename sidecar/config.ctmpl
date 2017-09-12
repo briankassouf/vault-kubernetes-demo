@@ -1,7 +1,7 @@
 {
 {{ with secret "secret/foo"}}
-{{ if .Data.password }}
-    "secret": "{{ .Data.password }}"
+{{ if .Data.bar }}
+    "secret": "{{ .Data.bar }}"
 {{ end }}
 {{ end }}
 } 
