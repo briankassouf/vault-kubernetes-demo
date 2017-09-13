@@ -24,8 +24,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s, err := vaultClient.Logical().Write("/auth/kube/login", map[string]interface{}{
-		"role": "test",
+	s, err := vaultClient.Logical().Write("/auth/kubernetes/login", map[string]interface{}{
+		"role": "demo",
 		"jwt":  string(content[:]),
 	})
 	if err != nil {
@@ -33,7 +33,9 @@ func main() {
 		return
 	}
 
-	fmt.Println(s.Auth.ClientToken)
+	log.Println("==> WARNING: Don't ever write secrets to logs.")
+	log.Println("==>          This is for demonstration only.")
+	log.Println(s.Auth.ClientToken)
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -46,6 +48,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	log.Println("Starting renewal loop")
 	go renewer.Renew()
 	defer renewer.Stop()
 
