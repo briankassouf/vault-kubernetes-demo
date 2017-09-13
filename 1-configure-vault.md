@@ -82,4 +82,4 @@ vault write secret/creds username=demo password=test
 
 The vault server is now configured to authenticate Service Account JWT tokens
 for the "vault-auth" Service Account in the "default" namespace. Next up we
-should create the Service Account in Kubernetes. 
+will [create the Service Account in Kubernetes](./2-configure-kubernetes.md). 
