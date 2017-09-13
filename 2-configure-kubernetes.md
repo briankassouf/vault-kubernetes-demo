@@ -23,7 +23,8 @@ kubectl create -f vault-auth.yaml
 ### RBAC 
 
 If your kubernetes cluster uses RBAC authorization you will need to provide the
-service account with a role that gives it access to the TokenReview API. 
+service account with a role that gives it access to the TokenReview API. If not, 
+this step can be skipped.
 
 The RBAC role is defined in in `vault-auth-rbac.yaml` and can be created with
 this command:
@@ -34,5 +35,5 @@ kubectl create -f vault-auth-rbac.yaml
 
 ## Next Steps
 
-We now have a configure vault backend and the service account setup with the
-appropriate permissions. Next we can deploy a basic application.
+We now have a configured vault backend and the service account setup with the
+appropriate permissions. Next we will [deploy a basic application](./3-deploy-basic.md).
