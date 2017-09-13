@@ -6,7 +6,8 @@ This example will run two containers, the first is running consul
 template that first uses the Kubernetes backend to authenticate to Vault.
 It then writes secrets to a template file that is in a volume shared with the
 second container. Our example app is running in the second container and loads
-the template file then logs the secret from the template file. Consul template
+the template file then logs the secret (don't log secrets in a
+real application!) from the template file. Consul template
 will keep the secret up to date and the vault token renewed. 
 
 ### Build the sidecar example
