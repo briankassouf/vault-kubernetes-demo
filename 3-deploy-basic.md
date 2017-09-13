@@ -58,7 +58,7 @@ cd ..
 
 ## Next Steps
 
-Next we will run a sidecar example.
+Next we will [run a sidecar example](./4-deploy-sidecar.md).
 
 
 
