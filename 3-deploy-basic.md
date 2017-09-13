@@ -4,7 +4,7 @@
 
 This example application will read the servcie account JWT token and use it to
 authenticate with Vault. It will then log the token (don't log secrets in a
-normal use case!) and keep the token renewed.
+real application!) and keep the token renewed.
 
 ### Build the basic example
 
