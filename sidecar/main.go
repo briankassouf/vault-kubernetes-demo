@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -14,7 +13,8 @@ import (
 const configLocation string = "/etc/example-app/config.json"
 
 type config struct {
-	Secret string `json:"secret"`
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
 func main() {
@@ -23,7 +23,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(config)
+	log.Println("==> WARNING: Don't ever write secrets to logs.")
+	log.Println("==>          This is for demonstration only.")
+	log.Printf("Username: %s", config.Username)
+	log.Printf("Password: %s", config.Password)
 
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
@@ -42,7 +45,7 @@ func getConfig() (*config, error) {
 		case err != nil:
 			return nil, err
 		}
-		log.Println(string(content[:]))
+
 		var config *config = &config{}
 		err = json.Unmarshal(content, config)
 		if err != nil {

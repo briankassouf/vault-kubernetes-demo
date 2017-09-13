@@ -1,3 +1,3 @@
-path "secret/foo" {
+path "secret/creds" {
   capabilities = ["read"]
 }

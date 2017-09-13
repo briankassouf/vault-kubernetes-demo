@@ -1,13 +1,13 @@
 apiVersion: apps/v1beta1
 kind: Deployment 
 metadata:
-  name: vault-example-sidecar
+  name: sidecar-example
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: vault-example-sidecar 
+        app: sidecar-example 
     spec:
       serviceAccountName: vault-auth
       containers:

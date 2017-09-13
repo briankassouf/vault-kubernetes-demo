@@ -69,6 +69,15 @@ period                          	60
 policies                        	[default kube-auth]
 ttl                             	0
 ```
+
+### Write a secret
+
+This will be used later in the demo
+
+```
+vault write secret/creds username=demo password=test
+```
+
 ## Next Steps
 
 The vault server is now configured to authenticate Service Account JWT tokens
