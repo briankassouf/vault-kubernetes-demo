@@ -49,7 +49,7 @@ vault write auth/kubernetes/role/demo \
     period=60s
 ```
 
-Notice we set a period of 60s, this means the resulting token is a periodic token and
+Notice we set a period of 60s, this means the resulting token is a [periodic token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) and
 must be renewed by the application at least every 60s.
 
 Read the demo role to verify everything was configured properly:
