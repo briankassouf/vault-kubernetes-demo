@@ -26,7 +26,7 @@ If your kubernetes cluster uses RBAC authorization you will need to provide the
 service account with a role that gives it access to the TokenReview API. If not, 
 this step can be skipped.
 
-The RBAC role is defined in in `vault-auth-rbac.yaml` and can be created with
+The RBAC role is defined in `vault-auth-rbac.yaml` and can be created with
 this command:
 
 ```
