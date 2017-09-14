@@ -1,4 +1,4 @@
-# Deployment Guide
+# Guide
 
 ## Deploy the sidecar example
 
