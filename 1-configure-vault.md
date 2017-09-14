@@ -1,6 +1,6 @@
-# Deployment Guide
+# Guide
 
-This tutorial will walk you configuring vault's kuberentes auth backend and
+This guide will walk you configuring vault's kuberentes auth backend and
 using the backend to authenticate pods.
 Requirements:
 
