@@ -1,4 +1,4 @@
-# Deployment Guide
+# Guide
 
 ## Configure the Kubernetes Service Account
 
