@@ -12,7 +12,7 @@ The easiest way to build the container is to connect your local docker agent
 to the remote one in kubernetes. With minikube this can be done with:
 
 ```
-eval $(minikube docker-env)`
+eval $(minikube docker-env)
 ```
 
 Then we can build the container:
