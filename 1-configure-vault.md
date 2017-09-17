@@ -23,7 +23,7 @@ config view` command. Replace the values below with the values for your system.
 
 ```
 vault write auth/kubernetes/config \
-    certificates=@/Users/brian/.minikube/apiserver.crt  \
+    pem_keys=@/Users/brian/.minikube/apiserver.crt  \
     kubernetes_host=https://192.168.99.100:8443 \
     kubernetes_ca_cert=@/Users/brian/.minikube/ca.crt
 ```
