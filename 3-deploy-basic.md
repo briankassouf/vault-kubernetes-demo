@@ -23,6 +23,9 @@ cd basic/
 
 ### Run the basic example
 
+The `VAULT_ADDR` variable in the deployment file should be updated to your vault
+server address
+
 Now we can run the application:
 
 ```
