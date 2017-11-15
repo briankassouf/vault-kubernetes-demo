@@ -16,9 +16,9 @@ config view` command. Replace the values below with the values for your system.
 
 ```
 vault write auth/kubernetes/config \
-    token_reviewer_jwt=<  \
+    token_reviewer_jwt=<vault-reviewer JWT Token>  \
     kubernetes_host=https://192.168.99.100:8443 \
-    kubernetes_ca_cert=@/Users/brian/.minikube/ca.crt
+    kubernetes_ca_cert=@/path/to/ca.crt
 ```
 
 ### Configuring a Role
