@@ -1,12 +1,5 @@
 # Guide
 
-This guide will walk you configuring vault's kuberentes auth backend and
-using the backend to authenticate pods.
-Requirements:
-
-* Vault 0.8.3
-* Kubernetes cluster 
-
 ## Configure the Kubernetes Auth Backend 
 
 ### Configuring the backend
@@ -23,7 +16,7 @@ config view` command. Replace the values below with the values for your system.
 
 ```
 vault write auth/kubernetes/config \
-    pem_keys=@/Users/brian/.minikube/apiserver.crt  \
+    token_reviewer_jwt=<  \
     kubernetes_host=https://192.168.99.100:8443 \
     kubernetes_ca_cert=@/Users/brian/.minikube/ca.crt
 ```
@@ -80,6 +73,7 @@ vault write secret/creds username=demo password=test
 
 ## Next Steps
 
-The vault server is now configured to authenticate Service Account JWT tokens
-for the "vault-auth" Service Account in the "default" namespace. Next up we
-will [create the Service Account in Kubernetes](./2-configure-kubernetes.md). 
+We now have a service account setup with the appropriate permissions and a Vault
+server configured to authenticate Service Account JWT tokens for the "vault-auth"
+Service Account in the "default" namespace. Next we will [deploy a basic
+application](./3-deploy-basic.md).
