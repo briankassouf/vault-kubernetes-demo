@@ -6,4 +6,4 @@ This is a demo on how to setup the Vault Kubernetes Auth Backend. It will takes 
 
 ## Next Steps
 
-The first step in the guide is to [configure the Vault Kubernetes Auth Backend](1-configure-vault.md)
+The first step in the guide is to [configure a Kubernetes Service Account](1-configure-kubernetes.md)
