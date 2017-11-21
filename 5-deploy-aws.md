@@ -118,12 +118,14 @@ kubectl create -f deployment.yaml
 kubectl logs -f $(kubectl \
     get pods -l app=aws-example \
     -o jsonpath='{.items[0].metadata.name}')
-2017/11/21 18:26:10 ==> WARNING: Don't ever write secrets to logs.
-2017/11/21 18:26:10 ==>          This is for demonstration only.
-2017/11/21 18:26:10 b0066742-56a3-2803-7a2e-8fb7a5b81274
-2017/11/21 18:26:10 AWS Access Key: AKIAJESCSBGRZEXAMPLE
-2017/11/21 18:26:10 AWS Secret Key: B/Dfy2EKWXhOSZHH/q4mYAOmEIg0XiOnwEXAMPLE
-2017/11/21 18:26:10 Starting renewal loop
+2017/11/21 22:39:10 ==> WARNING: Don't ever write secrets to logs.
+2017/11/21 22:39:10 ==>          This is for demonstration only.
+2017/11/21 22:39:10 Vault token: e8052101-1e9c-ef0d-d91a-be18192a37c6
+2017/11/21 22:39:41 AWS Access Key: AKIAIVUVHJF3REXAMPLE
+2017/11/21 22:39:41 AWS Secret Key: mkQZa9SW0c0tWn5F297FCGpPUSXYsZqvrEXAMPLE
+2017/11/21 22:39:41 ==> Listing EC2 clients using generated credentials
+2017/11/21 22:39:41 i-050168cbc1c0dd111
+2017/11/21 22:39:41 Starting renewal loop
 ```
 
 Then you should see a token renewal approximately every 20s.
