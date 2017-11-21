@@ -114,6 +114,7 @@ kubectl create -f deployment.yaml
 
 ### View the logs
 
+```sh
 kubectl logs -f $(kubectl \
     get pods -l app=aws-example \
     -o jsonpath='{.items[0].metadata.name}')
@@ -123,6 +124,7 @@ kubectl logs -f $(kubectl \
 2017/11/21 18:26:10 AWS Access Key: AKIAJESCSBGRZEXAMPLE
 2017/11/21 18:26:10 AWS Secret Key: B/Dfy2EKWXhOSZHH/q4mYAOmEIg0XiOnwEXAMPLE
 2017/11/21 18:26:10 Starting renewal loop
+```
 
 Then you should see a token renewal approximately every 20s.
 
@@ -137,3 +139,7 @@ cd ..
 
 [vault-aws-secret-backend]: https://www.vaultproject.io/docs/secrets/aws/index.html
 [vault-aws-root-creds]: https://www.vaultproject.io/docs/secrets/aws/index.html#root-credentials-for-dynamic-iam-users
+
+## Next Steps
+
+Read more about the kubernetes auth backend!
