@@ -49,6 +49,10 @@ func main() {
 		return
 	}
 
+	// Give some time for IAM cred creation to propagate since this action is
+	// eventually consistent
+	time.Sleep(30 * time.Second)
+
 	accessKey := s.Data["access_key"].(string)
 	secretKey := s.Data["secret_key"].(string)
 	log.Printf("AWS Access Key: %s\n", accessKey)
@@ -68,10 +72,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-
-	// Give some time for IAM cred creation to update since this action
-	// is eventually consistent
-	time.Sleep(30 * time.Second)
 
 	client := ec2.New(sess)
 	result, err := client.DescribeInstances(&ec2.DescribeInstancesInput{})
