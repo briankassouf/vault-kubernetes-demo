@@ -40,7 +40,7 @@ func main() {
 
 	log.Println("==> WARNING: Don't ever write secrets to logs.")
 	log.Println("==>          This is for demonstration only.")
-	log.Println(s.Auth.ClientToken)
+	log.Printf("Vault token: %s\n", s.Auth.ClientToken)
 
 	vaultClient.SetToken(s.Auth.ClientToken)
 	s, err = vaultClient.Logical().Read("/aws/creds/readonly")
@@ -65,12 +65,15 @@ func main() {
 		CustomCABundle: certs,
 	})
 	if err != nil {
-		fmt.Println("Session creation error")
 		fmt.Println(err)
 		return
 	}
 
-	client := ec2.New(sess, aws.NewConfig().WithRegion("us-east-1"))
+	// Give some time for IAM cred creation to update since this action
+	// is eventually consistent
+	time.Sleep(30 * time.Second)
+
+	client := ec2.New(sess)
 	result, err := client.DescribeInstances(&ec2.DescribeInstancesInput{})
 	if err != nil {
 		fmt.Println(err)
@@ -79,7 +82,7 @@ func main() {
 
 	for _, reservation := range result.Reservations {
 		for _, instance := range reservation.Instances {
-			fmt.Println(*instance.InstanceId)
+			log.Println(*instance.InstanceId)
 		}
 	}
 
