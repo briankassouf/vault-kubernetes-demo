@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,10 +9,6 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/hashicorp/vault/api"
 )
 
@@ -55,36 +50,10 @@ func main() {
 
 	accessKey := s.Data["access_key"].(string)
 	secretKey := s.Data["secret_key"].(string)
+	log.Println("==> WARNING: Don't ever write secrets to logs.")
+	log.Println("==>          This is for demonstration only.")
 	log.Printf("AWS Access Key: %s\n", accessKey)
 	log.Printf("AWS Secret Key: %s\n", secretKey)
-
-	log.Println("==> Listing EC2 clients using generated credentials")
-
-	certs := bytes.NewReader(pemCerts)
-	sess, err := session.NewSessionWithOptions(session.Options{
-		Config: aws.Config{
-			Region:      aws.String("us-east-1"),
-			Credentials: credentials.NewStaticCredentials(accessKey, secretKey, ""),
-		},
-		CustomCABundle: certs,
-	})
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	client := ec2.New(sess)
-	result, err := client.DescribeInstances(&ec2.DescribeInstancesInput{})
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	for _, reservation := range result.Reservations {
-		for _, instance := range reservation.Instances {
-			log.Println(*instance.InstanceId)
-		}
-	}
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
