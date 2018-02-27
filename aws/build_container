@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./build
+docker build -t hashicorp/vault-example-aws:0.0.1 .
+rm vault-example-aws

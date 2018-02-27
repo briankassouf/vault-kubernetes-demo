@@ -29,7 +29,7 @@ of Vault policies and token settings.
 First create the policy we want this role to gain:
 
 ```
-vault policy-write kube-auth sidecar/kube-auth.hcl
+vault policy-write kube-auth kube-auth.hcl
 ```
 
 To create a role with the S.A. name "vault-auth" in the "default" namespace:
